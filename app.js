@@ -52,30 +52,12 @@ let taskDiv = function createTaskElement(taskObject) {
   return taskDiv;
 };
 
-
-
-
-// document.body.addEventListener("click",()=>{
-//   taksCompleted();
-// })
-// function taksCompleted(createObject) {
-//   createObject.completed = "true";
-//   console.log(createObject);
-  
-// }
-
-
-
-
-
-
-
-
-
 function deleteTask(id, element) {
   arr = arr.filter((e) => e.id != id);
   p.textContent = `${numTotalTask()} tasks(s)`;
   element.remove();
+  console.log(arr);
+  
   
 }
 
@@ -87,6 +69,7 @@ document.body.addEventListener("click", (e) => {
     );
     
     
+    
   }
 });
 
@@ -96,7 +79,7 @@ function handleAdd() {
   let taskObject = createObject((count += 1), title);
   addTaskObjectToArray(taskObject);
   taskDiv(taskObject);
-  console.log(taskObject);
+  
 }
 
 function clearInput() {
@@ -113,6 +96,8 @@ btn.onclick = function () {
     handleAdd();
     clearInput();
     p.textContent = `${numTotalTask()} tasks(s)`;
+    console.log(arr);
+    
 
     
   }
@@ -122,9 +107,37 @@ input.addEventListener("keydown", (e) => {
     handleAdd();
     clearInput();
     p.textContent = `${numTotalTask()} tasks(s)`;
+    console.log(arr);
+    
+    
+    
     
   }
 });
+// let checkBox=document.querySelector("#k")
+// checkBox.addEventListener("change",()=>{
+//   if(checkBox.checked){
+//     console.log("hello");
+    
+//   }
+// })
+document.body.addEventListener("click", (e) => {
+ 
+  if(e.target.value=="on") taksCompleted(e.target.parentElement.parentElement.dataset.id);
+});
+function taksCompleted(id) {
+  let indexOfElementId=arr.findIndex((e) => e.id == id)
+  if(arr[indexOfElementId].completed == false) {
+    arr[indexOfElementId].completed = true;
+  }
+  else{
+    arr[indexOfElementId].completed=false
+  }
+  
+  
+  
+  console.log(arr);
+}
 // ???????????????????????????????????????????????
 
 // let input = document.querySelector("input");
@@ -250,6 +263,8 @@ input.addEventListener("keydown", (e) => {
     
 //   }
 // });
+
+
 
 
 
