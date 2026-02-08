@@ -5,7 +5,7 @@ let taksContainer = document.querySelector(".tasks-container");
 let p = document.querySelector("p");
 let arr = [];
 let count = 0;
-localStorage.clear()
+// localStorage.clear()
 
 let createObject = function createObject(id, title) {
   let taskObject = {
