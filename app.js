@@ -139,10 +139,6 @@
 //   }
 // });
 
-
-
-
-
 var input = document.querySelector("input");
 var btn = document.querySelector("button");
 var container = document.querySelector(".container");
@@ -151,21 +147,20 @@ var p = document.querySelector("p");
 var arr = [];
 var count = 0;
 var taskObject;
-
- function createObject(id, title) {
-   taskObject = {
+function createObject(id, title) {
+  taskObject = {
     id: Number(id),
     title: title,
     completed: false,
   };
   return taskObject;
-};
+}
 
 function addTaskObjectToArray(taskObject) {
   arr.push(taskObject);
 }
 
- function createTaskElement(taskObject) {
+function createTaskElement(taskObject) {
   let taskDiv = document.createElement("div");
   taskDiv.classList.add("task");
   taksContainer.appendChild(taskDiv);
@@ -197,12 +192,11 @@ function addTaskObjectToArray(taskObject) {
   setTimeout(() => {
     taskDiv.classList.add("show");
   }, 10);
-  
-};
+}
 
 function deleteTask(id, element) {
   arr = arr.filter((e) => e.id != id);
-  p.textContent = `${numTotalTask()} tasks(s)`;
+  p.textContent = `${arr.length} tasks(s)`;
   element.remove();
   // ?window.localStorage.setItem("taskStorage", JSON.stringify(arr));
   updateLocalStorage();
@@ -228,14 +222,12 @@ function clearInput() {
   input.focus();
 }
 
-let numTotalTask = function countTask() {
-  return arr.length;
-};
+
 
 function loadTasksFromLocalStorage() {
   if (window.localStorage.getItem("taskStorage")) {
     arr = JSON.parse(localStorage.getItem("taskStorage"));
-    p.textContent = `${numTotalTask()} tasks(s)`;
+    p.textContent = `${arr.length} tasks(s)`;
     for (let i = 0; i < arr.length; i++) {
       createTaskElement(arr[i]);
     }
@@ -267,7 +259,7 @@ btn.onclick = function () {
   if (input.value != "") {
     handleAdd();
     clearInput();
-    p.textContent = `${numTotalTask()} tasks(s)`;
+    p.textContent = `${arr.length} tasks(s)`;
     updateLocalStorage();
   }
 };
@@ -275,7 +267,7 @@ input.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && input.value != "") {
     handleAdd();
     clearInput();
-    p.textContent = `${numTotalTask()} tasks(s)`;
+    p.textContent = `${arr.length} tasks(s)`;
     updateLocalStorage();
   }
 });
